@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="query_log" class="org.apache.log4j.ConsoleAppender"> <!-- name : query_log -->
+	    <param name="Target" value="System.out" />
+	    <layout class="org.apache.log4j.PatternLayout">
+	        <param name="ConversionPattern" value="%d %-5p [%c] (%t:%x) %m%n"/>
+	    </layout>
+	</appender>
+	
+	<category name="com.app.myapp.dao.*"> <!-- 출력을 원하는 부분 java class -->
+	    <priority value="DEBUG"/>
+	    <appender-ref ref="query_log"/>
+	</category>
+	
+	<!-- Application Loggers -->
+	<logger name="com.app.myapp.controller">
+		<level value="info" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+	
+	<!-- query log : additivity="false" 옵션은 쿼리 로그의 중복 출력이 되지 않도록 -->
+	<logger name="java.sql.Connection" additivity="false">
+	    <level value="DEBUG" />
+	    <appender-ref ref="query_log"/>
+	</logger>
+	 
+	<logger name="java.sql.Statement" additivity="false">
+	    <level value="DEBUG" />
+	    <appender-ref ref="query_log"/>
+	</logger>
+	 
+	<logger name="java.sql.PreparedStatement" additivity="false">
+	    <level value="DEBUG" />
+	    <appender-ref ref="query_log"/>
+	</logger>
+	 
+	<logger name="java.sql.ResultSet" additivity="false">
+	    <level value="DEBUG" />
+	    <appender-ref ref="query_log"/>
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+	</root>
+
+	
+</log4j:configuration>
