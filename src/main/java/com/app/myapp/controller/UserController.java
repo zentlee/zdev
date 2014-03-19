@@ -28,7 +28,7 @@ public class UserController {
 		mav.setViewName("user");
 		Map<String, String> map = new HashMap<String, String>();
 		int i = userDaoImpl.getLoginResult(map);
-		logger.info(String.valueOf(i));
+		logger.info("count : " +String.valueOf(i));
 		return mav;
 	}
 }
