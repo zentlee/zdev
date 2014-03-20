@@ -23,7 +23,7 @@ public class UserController {
 	
 	@RequestMapping("/user.do")
 	public ModelAndView getUser(){
-		logger.info("user.do");
+		logger.info("user.do - start");
 		ModelAndView mav = new ModelAndView("user");
 		mav.setViewName("user");
 		Map<String, String> map = new HashMap<String, String>();
